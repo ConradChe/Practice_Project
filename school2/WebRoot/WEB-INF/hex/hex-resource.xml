@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans >
+<hexs>
+	<!-- 资源用途 -->
+	<hex id="hex_resource_purpose_limitQuery" name="分页显示资源用途" type="jdbc" operate="query" table="t_resource_purpose">
+		<param name="resource_purpose_name" type="varchar" like="true"/>
+		<param name="resource_folder" type="char"  like="true"/>
+	</hex>
+
+	<hex id="hex_resource_purpose_query_by_terms" name="通过ID或者用途名称查询资源用途" type="jdbc" operate="query_all" table="t_resource_purpose">
+		<param name="resource_purpose_id" type="int" />
+		<param name="resource_purpose_name" type="varchar" />
+	</hex>
+	
+	<hex id="hex_resource_purpose_add" name="新增资源用途" type="jdbc" operate="insert" table="t_resource_purpose">
+		<param name="resource_purpose_id" type="int"  primary="true" />
+		<param name="resource_purpose_name" type="varchar" />
+		<param name="resource_folder" type="char"  />
+		<param name="is_only" type="int" />
+		<param name="note" type="varchar" />
+		<param name="is_expire" type="int" />
+		<param name="expire_day" type="int" />
+	</hex>
+	
+	<hex id="hex_resource_purpose_update" name="修改资源用途" type="jdbc" operate="update" table="t_resource_purpose">
+		<param name="resource_purpose_id" type="int"  primary="true" />
+		<param name="resource_purpose_name" type="varchar" />
+		<param name="resource_folder" type="char"  />
+		<param name="is_only" type="int" />
+		<param name="note" type="varchar" />
+		<param name="is_expire" type="int" />
+		<param name="expire_day" type="int" />
+	</hex>
+	
+	<hex id="hex_resource_purpose_delete_by_id" name="通过ID删除资源用途" type="jdbc" operate="delete" table="t_resource_purpose">
+		<param name="resource_purpose_id" type="int" />
+	</hex>
+	
+	
+
+
+
+	<hex id="hex_resource_user_insert" name="用户资源上传增加" type="jdbc" operate="insert" table="t_resource_user">
+		<param name="resource_id" type="char" primary="true" />
+		<param name="user_type" type="varchar" />
+		<param name="student_id" type="char" />
+		<param name="outer_url" type="varchar" />
+		<param name="inner_path" type="varchar" />
+		<param name="resource_folder" type="varchar" />
+		<param name="resource_purpose_name" type="char" />
+		<param name="is_only" type="int" />
+		<param name="year" type="int" />
+		<param name="upload_time" type="varchar" />
+		<param name="expiration_time" type="varchar" />
+	</hex>
+
+	<hex id="hex_resource_user_query_by_outerurl" name="外部路径查询用户资源" type="jdbc" operate="query_all" table="t_resource_user">
+		<param name="outer_url" type="varchar" null_value="-1" />
+		<param name="student_id" type="varchar" null_value="-1" />
+		<!--<param name="user_type" type="varchar" null_value="-1" />-->
+	</hex>
+
+	<hex id="hex_resource_user_delete_by_outerurl" name="通过外部路径删除用户资源" type="jdbc" operate="delete" table="t_resource_user">
+		<param name="outer_url" type="varchar" null_value="-1" />
+		<param name="student_id" type="varchar" null_value="-1" />
+		<param name="user_type" type="varchar" null_value="-1" />
+	</hex>
+
+	<hex id="hex_resource_user_delete_by_user_and_purpose" name="根据客户和用途的删除对应的全部资源" type="jdbc" operate="delete" table="t_resource_user">
+		<param name="student_id" type="varchar" null_value="-1" />
+		<param name="user_type" type="varchar" null_value="-1" />
+		<param name="resource_purpose_name" type="varchar" null_value="-1" />
+		<param name="is_only" type="int" null_value="1" />
+	</hex>
+	
+	<hex id="hex_resource_user_query_by_user_and_purpose" name="根据客户和用途的查询对应的全部资源" type="jdbc" operate="query_all" table="t_resource_user">
+		<param name="student_id" type="varchar" null_value="-1" />
+		<param name="user_type" type="varchar" null_value="-1" />
+		<param name="resource_purpose_name" type="varchar" null_value="-1" />
+		<param name="is_only" type="int" null_value="1" />
+	</hex>
+
+</hexs>

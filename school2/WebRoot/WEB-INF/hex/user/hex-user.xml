@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans >
+
+<hexs>
+	<hex id="hex_user_queryAllUsers" name="查询所有用户" type="jdbc" operate="query" table="t_sys_user">
+	</hex>
+
+	<hex id="hex_user_queryUserByUserId" name="通过用户ID查询用户" type="jdbc" operate="query_all" table="t_sys_user" >
+		<param name="user_id" type="char" primary="true"/>
+	</hex>
+	
+	<hex id="hex_user_queryUserByLoginName" name="通过登录名查询用户" type="jdbc" operate="query_all" table="t_sys_user">
+		<param name="login_name" type="varchar"/>
+	</hex>
+	
+	<hex id="hex_user_deleteUserFunction" name="删除用户function" type="function" operate="com.yunyun.school.function.user.DeleteUserFunction">
+		<param name="user_id" type="char"/>
+	</hex>
+	
+	<hex id="hex_user_deleteUserByUserId" name="通过ID删除用户" type="jdbc" operate="delete" table="t_sys_user">
+		<param name="user_id" type="char" primary="true"/>
+	</hex>
+	
+	<hex id="hex_user_insertUserFunction" name="新增用户function" type="function" operate="com.yunyun.school.function.user.InsertUserFunction">
+		<param name="login_name" type="varchar"/>
+		<param name="login_pwd" type="varchar"/>
+		<param name="real_name" type="varchar"/>
+	</hex>
+	
+	<hex id="hex_user_insertUser" name="新增用户" type="jdbc" operate="insert" table="t_sys_user">
+		<param name="user_id" type="char"/>
+		<param name="login_name" type="varchar"/>
+		<param name="login_pwd" type="md5"/>
+		<param name="real_name" type="varchar"/>
+	</hex>
+	
+	<hex id="hex_user_updateUserFunction" name="更新用户function" type="function" operate="com.yunyun.school.function.user.UpdateUserFunction">
+		<param name="user_id" type="char"/>
+		<param name="login_pwd" type="varchar"/>
+		<param name="real_name" type="varchar"/>
+	</hex>
+	
+	<hex id="hex_user_updateUser" name="更新用户" type="jdbc" operate="update" table="t_sys_user">
+		<param name="user_id" type="char" primary="true"/>
+		<param name="login_pwd" type="md5"/>
+		<param name="real_name" type="varchar"/>
+	</hex>
+		
+</hexs>

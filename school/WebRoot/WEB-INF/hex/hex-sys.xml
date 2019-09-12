@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans >
+<hexs>
+	<!-- 系统配置 -->
+	<hex id="hex_sys_params" name="系统参数" type="jdbc" operate="crud" table="t_sys_params">
+		<param name="param_id" type="int" primary="true" />
+		<param name="param_name" type="varchar" />
+		<param name="val" type="varchar" />
+		<param name="note" type="varchar" />
+	</hex>
+	
+	<hex id="hex_sys_params_insert" name="新增系统参数" type="jdbc" operate="insert" table="t_sys_params">
+		<param name="param_id" type="int" primary="true" />
+		<param name="param_name" type="varchar" />
+		<param name="val" type="varchar" />
+		<param name="note" type="varchar" />
+	</hex>
+	
+	<hex id="hex_sys_params_update" name="修改系统参数" type="jdbc" operate="update" table="t_sys_params">
+		<param name="param_id" type="int" primary="true" />
+		<param name="param_name" type="varchar" />
+		<param name="val" type="varchar" />
+		<param name="note" type="varchar" />
+	</hex>
+	
+	<hex id="hex_sys_params_limitQuery" name="分页查询系统参数" type="jdbc" operate="query" table="t_sys_params">
+		<param name="param_id" type="int" />
+		<param name="param_name" type="varchar" like="true"/>
+	</hex>
+	
+	<hex id="hex_sys_params_query_by_paramId" name="通过ID查询系统参数" type="jdbc" operate="query_all" table="t_sys_params">
+		<param name="param_id" type="int" />
+	</hex>
+	
+	<hex id="hex_sys_params_delete_by_paramId" name="通过ID删除系统参数" type="jdbc" operate="delete" table="t_sys_params">
+		<param name="param_id" type="int" />
+	</hex>
+
+	<!-- 数据字典 -->
+	<hex id="hex_sys_dicts" name="数据字典" type="jdbc" operate="crud" table="t_sys_dicts">
+		<param name="dict_id" type="varchar" primary="true" />
+		<param name="dict_code" type="varchar" />
+		<param name="dict_name" type="varchar" />
+		<param name="dict_org" type="int" />
+		<param name="dict_note" type="varchar" />
+	</hex>
+	
+	<hex id="hex_sys_dicts_insert" name="新增数据字典" type="jdbc" operate="insert" table="t_sys_dicts">
+		<param name="dict_id" type="varchar" primary="true" />
+		<param name="dict_code" type="varchar" />
+		<param name="dict_name" type="varchar" />
+		<param name="dict_org" type="int" />
+		<param name="dict_note" type="varchar" />
+	</hex>
+	
+	<hex id="hex_sys_dicts_update" name="更新数据字典" type="jdbc" operate="update" table="t_sys_dicts">
+		<param name="dict_id" type="varchar" primary="true" />
+		<param name="dict_code" type="varchar" />
+		<param name="dict_name" type="varchar" />
+		<param name="dict_org" type="int" />
+		<param name="dict_note" type="varchar" />
+	</hex>
+	
+	
+	<hex id="hex_sys_dicts_limitQuery" name="通过条件分页查询数据字典" type="jdbc" operate="query" table="t_sys_dicts">
+
+		<param name="dict_code" type="varchar"  like="true"/>
+		<param name="dict_name" type="varchar" like="true"/>
+
+	</hex>
+	
+	<hex id="hex_sys_dicts_query_by_id" name="通过ID查询数据字典" type="jdbc" operate="query_all" table="t_sys_dicts">
+		<param name="dict_id" type="varchar" />
+
+	</hex>
+	
+	<hex id="hex_sys_dicts_delete_by_id" name="通过ID删除数据字典" type="jdbc" operate="delete" table="t_sys_dicts">
+		<param name="dict_id" type="varchar" />
+
+	</hex>
+	
+	<hex id="hex_sys_dict_items" name="数据字典子项" type="jdbc" operate="crud" table="t_sys_dict_items" order="dict_id,item_sort">
+		<param name="item_id" type="varchar" primary="true" />
+		<param name="dict_id" type="varchar" />
+		<param name="item_name" type="varchar" />
+		<param name="item_val" type="varchar" />
+		<param name="item_sort" type="int" />
+		<param name="item_note" type="varchar" />
+	</hex>
+	
+	
+	<hex id="hex_sys_dict_items_insert" name="新增数据字典子项" type="jdbc" operate="insert" table="t_sys_dict_items" >
+		<param name="item_id" type="varchar" primary="true" />
+		<param name="dict_id" type="varchar" />
+		<param name="item_name" type="varchar" />
+		<param name="item_val" type="varchar" />
+		<param name="item_sort" type="int" />
+		<param name="item_note" type="varchar" />
+	</hex>
+	
+	<hex id="hex_sys_dict_items_update" name="修改数据字典子项" type="jdbc" operate="update" table="t_sys_dict_items" >
+		<param name="item_id" type="varchar" primary="true" />
+		<param name="dict_id" type="varchar" />
+		<param name="item_name" type="varchar" />
+		<param name="item_val" type="varchar" />
+		<param name="item_sort" type="int" />
+		<param name="item_note" type="varchar" />
+	</hex>
+	
+	<hex id="hex_sys_dict_items_limitQuery" name="分页查询数据字典子项" type="jdbc" operate="query" table="t_sys_dict_items" order="dict_id,item_sort">
+		<param name="dict_id" type="varchar" />
+	</hex>
+	
+	<hex id="hex_sys_dict_items_query_by_itemId" name=" 通过子项ID查询数据字典子项" type="jdbc" operate="query_all" table="t_sys_dict_items" >
+		<param name="item_id" type="varchar"  />
+	</hex>
+	
+	<hex id="hex_sys_dict_items_delete_by_itemId" name=" 通过子项ID删除数据字典子项" type="jdbc" operate="delete" table="t_sys_dict_items" >
+		<param name="item_id" type="varchar"  />
+	</hex>
+	
+	<hex id="hex_sys_dict_items_delete_by_dictId" name=" 通过数据字典ID删除数据字典子项" type="jdbc" operate="delete" table="t_sys_dict_items" >
+			<param name="dict_id" type="varchar" />
+	</hex>
+	
+	
+</hexs>

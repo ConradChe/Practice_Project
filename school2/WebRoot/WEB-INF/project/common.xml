@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans>
+<beans>
+	<!-- 登录注册相关Action -->
+	<bean id="common.userLoginAcion" class="com.yunyun.school.action.login.UserLogin" />
+	<bean id="common.loginAction" type="action" action="/common/login.do" class="com.yunyun.school.action.login.LoginAction" />
+	<!-- 通用Action -->
+	<bean id="common.dataAction" type="action" action="/common/data.do" class="com.yunyun.school.action.data.ManageDataAction" />
+	<bean id="common.getDictsAction" type="action" action="/common/get_dicts.do" class="com.haitsoft.framework.data.action.GetDictsAction" />
+	<bean id="common.getDictByCodeAction" type="action" action="/common/get_dict_by_code.do" class="com.haitsoft.framework.data.action.GetDictByCodeAction" />
+	<bean id="common.getSystemParamByCodeAction" type="action" action="/common/get_sysparam_by_code.do" class="com.haitsoft.framework.data.action.GetSystemParamByCodeAction" />
+
+	<!-- 资源上传Action -->
+	<bean id="common.mediaFileUploadAction" type="action" action="/common/media_file_upload.do" class="com.yunyun.school.action.upload.MediaFileUploadAction" />
+
+	<!-- 图片base64上传Action -->
+	<bean id="common.imageBase64UploadAction" type="action" action="/common/image_base64_upload.do" class="com.yunyun.school.action.upload.ImageBase64UploadAction" />
+
+	<!-- 删除Action -->
+	<bean id="common.mediaFileDeleteAction" type="action" action="/common/media_file_delete.do" class="com.yunyun.school.action.upload.MediaFileDeleteAction" />
+	
+	<!-- 初始化Action -->
+	<bean id="common.initAction" type="action" action="/common/init.do" class="com.haitsoft.framework.data.action.InitAction" >
+		<property name="config" value="/WEB-INF/hex/hex-map-config.xml" />
+	</bean>
+</beans>

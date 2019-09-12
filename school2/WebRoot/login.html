@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>login</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="pragma" content="no-cache"> 
+	<meta http-equiv="cache-control" content="no-cache"> 
+	<meta http-equiv="expires" content="0"> 
+	<script type="text/javascript" src="frame/include.js"></script>
+	<script type="text/javascript">
+		$(document).keydown(function(event){
+		   if(event.keyCode==13){
+		         loginFormSubmit();
+		         return false;
+		     }
+		});
+		
+		function loginFormSubmit(){
+			var loginName = document.loginForm["login_name"].value;
+			var loginPwd = document.loginForm["login_pwd"].value;
+			
+			// 进行基本有效性验证
+			if(loginName == null || loginName.length == 0){
+				alert("用户名不能为空!");
+				return;
+			}
+			if(loginPwd == null || loginPwd.length == 0){
+				alert("密码不能为空!");
+				return;
+			}
+			
+			// 进行更多验证
+			if(loginName.indexOf("'") >= 0 || loginPwd.indexOf("'") >=0){
+				alert("用户名和密码中不允许存在单引号，请检查!");
+				return;
+			}
+			
+			document.loginForm.submit();
+		}
+	</script>
+  </head>
+  
+  <body>
+    <div class="login_form">
+		<form name="loginForm" method="post" action="common/login.do">
+			<input type="hidden" name="validate_code_flag"/>
+			<input type="hidden" name="error_number" value="<%=errorNumber %>"/>
+			<input class="username input_us" type="text" maxlength="11" name="login_name" placeholder="请输入用户名" autocomplete="off"/>
+			<input class="password input_us" type="password" maxlength="20" name="login_pwd" placeholder="请输入密码" />
+			<input class="btn_login " type="button" value="登&nbsp;&nbsp;&nbsp;录" onclick="loginFormSubmit()">
+			<div style="clear: both;"></div>
+		</form>
+	</div>
+  </body>
+</html>

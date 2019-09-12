@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans >
+
+<hexs>
+	<hex id="hex_exam_queryExaminationRecords" name="查询考试记录" type="jdbc" operate="query" table="t_examination"></hex>
+	
+	<hex id="hex_exam_queryExaminationRecordsTotal" name="查询考试远程统计" type="jdbc" operate="sql_query_all">
+		<sql>
+			SELECT
+				sum(base_score) AS base_score,
+				sum(major_score) AS major_score,
+				sum(other_score) As other_score
+			FROM
+				t_examination
+		</sql>
+	</hex>
+	
+	
+</hexs>

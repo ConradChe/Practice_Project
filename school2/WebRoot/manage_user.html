@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>用户信息管理</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="pragma" content="no-cache"> 
+	<meta http-equiv="cache-control" content="no-cache"> 
+	<meta http-equiv="expires" content="0"> 
+	<script type="text/javascript" src="frame/include.js"></script>
+	<script type="text/javascript" src="manage_user.js?v=2017122907"></script>
+  </head>
+  
+  <body>
+  	<div class="container" style="width:97%">
+  		<div class="title-bar">
+    		<div class="title">用户信息管理</div>
+    	</div>
+    	<div class="search-bar">
+			<button class="hait-button icon-see-details" onclick="showAddUserDialog()">新增用户</button>
+			<button class="hait-button icon-modification" onclick="showModifyUserDialog()">编辑用户</button>
+			<button class="hait-button icon-delete" onclick="doDeleteUser()">删除</button>
+    	</div>
+    	
+    	<div class="cls" style="margin-top: 10px"></div>
+    	
+    	<table id="userGrid" hait-type="hait.grid.Grid" mode="func" func-id="hex_user_queryAllUsers"
+    	 onrowclick="userGridRowClick" limit="12" title-sort="true" style="margin-top: 20px">
+    		<tr>
+    			<th field="login_name">登录名</th>
+    			<th field="real_name">真实姓名</th>
+    		</tr>
+    	</table>
+    	
+    	<div id="userOperateDialog" hait-type="hait.dialog.Dialog" title="新增用户" style="width: 800px; height: 430px;">
+    		<div>
+    			<form id="userOperateForm" action="#" method="post" hait-type="hait.form.Form">
+    				<table border="0" width="100%">
+    					<tr>
+    						<td>登录名</td>
+    						<td>
+    							<input name="login_name" type="text" hait-type="hait.form.field.TextField" required="true" placeholder="请输入登录名" />
+    						</td>
+    						<td>真实姓名</td>
+    						<td>
+    							<input name="real_name" type="text" hait-type="hait.form.field.TextField" required="true" placeholder="请输入真实姓名" />
+    						</td>
+    					</tr>
+    					<tr>
+    						<td>登录密码</td>
+    						<td>
+    							<input id="login_pwd" name="login_pwd" type="password" hait-type="hait.form.field.TextField" placeholder="请输入密码" />
+    						</td>
+    					</tr>
+    				</table>
+    			</form>
+    		</div>
+    		<div class="buttons">
+				<button>关闭</button>
+				<button id="mainDealBtn" stress="true" onclick="saveUserData()">提交</button>
+			</div>
+  		</div>
+  		
+  </body>
+</html>

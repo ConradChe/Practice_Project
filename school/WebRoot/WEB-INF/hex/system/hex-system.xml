@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans>
+<hexs>
+	<!-- 系统用户相关 -->
+	<hex id="hex_system_querySystemUserWhenLogin" name="登录时查询验证用户信息" type="jdbc" operate="query_all" table="t_sys_user">
+		<param name="login_name" type="varchar" />
+		<param name="login_pwd" type="md5" />
+	</hex>
+	
+	<hex id="hex_system_querySystemUserByUserId" name="根据用户编号查询用户是否存在" type="jdbc" operate="query_all" table="t_sys_user">
+		<param name="user_id" type="varchar" />
+	</hex>
+	
+	<hex id="hex_system_querySystemUserByLoginName" name="根据登录名查询是否已存在此用户" type="jdbc" operate="query_all" table="t_sys_user">
+		<param name="login_name" type="varchar" />
+	</hex>
+	
+</hexs>

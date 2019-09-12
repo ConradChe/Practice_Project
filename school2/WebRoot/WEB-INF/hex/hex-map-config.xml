@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans>
+<configs>
+	<config resource="hex-sys.xml" />
+	<config resource="hex-resource.xml" />
+	<config resource="system/hex-system.xml" />
+	<config resource="system/hex-resource-city.xml" />
+	<config resource="record/hex-record.xml" />
+	<config resource="student/hex-student.xml" />
+	<config resource="teacher/hex-teacher.xml" />
+	<config resource="class/hex-class.xml" />
+	<config resource="major/hex-major.xml" />
+	<config resource="exam/hex-exam.xml" />
+	<config resource="user/hex-user.xml" />
+</configs>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>班级管理</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="pragma" content="no-cache"> 
+  <meta http-equiv="cache-control" content="no-cache"> 
+  <meta http-equiv="expires" content="0"> 
+  <script type="text/javascript" src="frame/include.js"></script>
+  <script type="text/javascript" src="manage_class.js?v=2017122501"></script>
+<style>
+form table tr td {
+	height: 34px;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="title-bar">
+			<div class="title">班级管理</div>
+		</div>
+			<ul id="leftTree" hait-type="hait.tree.Tree" mode="func" func-id="hex_class_queryAllClass" params="operate:'query_all'"
+				 id-name="grade_id" text="grade_name" onclick="leftTreeClick"
+				 style="width: 25%;height: 90%;float: left;border:1px solid #dddddd;margin-top: 10px;overflow: auto;">
+			</ul>
+			<div id="mytab" hait-type="hait.layout.TabLayout" style="width: 73%;height: 90%;float: right;margin-top: 10px;"
+				onchange="tabChange()">
+				<div>
+					<button>修改班级信息</button>
+					<button>添加同级班级</button>
+					<button>添加下级班级</button>
+				</div>
+				<div>
+					<!-- 修改菜单 -->
+					<div>
+						<form action="#" method="post" id="updateForm"
+							style="margin-right: 10px;margin-left:10px;width:98%;" hait-type="hait.form.Form">
+							<table border="0" width="100%">
+								<tr>
+									<td>班级名称：</td>
+									<td>
+										<input type="text" name="grade_name" hait-type="hait.form.field.TextField"/>
+										<input type="hidden" name="grade_id" hait-type="hait.form.field.TextField"/>
+									</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>是否有子叶：</td>
+									<td>
+										<select name="is_leaf" placeholder="请选择..." hait-type="hait.form.field.SelectField" default-value="1" readonly="readonly">
+											<option value="0">无</option>
+											<option value="1">有</option>
+										</select>
+									</td>
+									<td>排序号：</td>
+									<td><input type="text" name="sort" hait-type="hait.form.field.TextField"/></td>
+								</tr>
+								<tr>
+									<td colspan="4" style="text-align: center;height:60px;">
+										<input id="submitBtn" type="button" class="hait-button" value="保存" />
+										<input type="reset" class="hait-button" value="重置" />
+										<input id="deleteBtn" type="button" class="hait-button stress" value="删除" onclick="updateFormDelete()" />
+									</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+					<!-- 添加同级菜单 -->
+					<div>
+						<form action="#" method="post" id="insertForm" style="margin-right: 10px;margin-left:10px;width:98%;" hait-type="hait.form.Form">
+							<table border="0" width="100%">
+								<tr>
+									<td>班级名称：</td>
+									<td>
+										<input type="text" name="grade_name" hait-type="hait.form.field.TextField" required="true" />
+										<input type="hidden" name="parent_id" hait-type="hait.form.field.TextField" id="same_region"/>
+									</td>
+									<td>排序号：</td>
+									<td>
+										<input type="text" name="sort" hait-type="hait.form.field.TextField" required="true"/>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="4" style="text-align: center;"><input id="submitBtn" type="button"
+											class="hait-button" value="保存" /> <input type="reset" class="hait-button" value="重置" />
+									</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+					<!-- 添加下级菜单 -->
+					<div>
+						<form action="#" method="post" id="insertChildForm" style="margin-right: 10px;margin-left:10px;width:98%;" hait-type="hait.form.Form">
+							<table border="0" width="100%">
+								<tr>
+									<td>班级名称：</td>
+									<td>
+										<input type="text" name="grade_name" hait-type="hait.form.field.TextField" required="true" />
+										<input type="hidden" name="parent_id" hait-type="hait.form.field.TextField" required="true" id="next_region"/>
+									</td>
+										
+									<td>排序号：</td>
+									<td>
+										<input type="text" name="sort" hait-type="hait.form.field.TextField" required="true"/>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="4" style="text-align: center;">
+										<input id="submitBtn" type="button" class="hait-button" value="保存" />
+									    <input type="reset" class="hait-button" value="重置" />
+									 </td>
+								</tr>
+							</table>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>前端示例</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="pragma" content="no-cache"> 
+	<meta http-equiv="cache-control" content="no-cache"> 
+	<meta http-equiv="expires" content="0"> 
+	<script type="text/javascript" src="frame/include.js"></script>
+	<script type="text/javascript">
+		var token;
+		
+		function GetQueryString(name){
+		    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		    var r = window.location.search.substr(1).match(reg);
+		    if(r!=null)return  unescape(r[2]); return null;
+		}
+		
+		var token = GetQueryString("token");
+		if (token != null && token != undefined && token != "undefined" && token != ""){
+			localStorage.setItem("token", token);
+		}
+		
+		function turnIframeUrl(url){
+			var turnUrl = url + "?token=" + token;
+			$("#childPageFrame").attr("src",turnUrl);
+		}
+	</script>
+  </head>
+  
+  <body>
+  	<div style="width:15%;min-height:800px;float:left;border:1px dashed red;">
+      <a href="javascript:turnIframeUrl('manage_student.html')">查询学员信息</a><br/><br/><br/>
+      <a href="javascript:turnIframeUrl('manage_teacher.html')">管理教师</a><br/><br/><br/>
+      <a href="javascript:turnIframeUrl('manage_class.html')">管理班级</a><br/><br/><br/>
+      <a href="javascript:turnIframeUrl('manage_major.html')">管理专业</a><br/><br/><br/>
+      <a href="javascript:turnIframeUrl('manage_exam.html')">考试记录</a><br/><br/><br/>
+      <a href="javascript:turnIframeUrl('manage_user.html')">系统用户</a><br/><br/><br/>
+    </div>
+    <div style="width: 84%;min-height:800px;float:left; margin-left:10px; border: 1px dashed blue;">
+    	<iframe id="childPageFrame" style="width: 100%; min-height: 800px; border: 1px solid green;" src=""></iframe>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans >
+<hexs>
+	<hex id="hex_resource_city_queryAllOpenCity" name="查询所有开通城市" type="jdbc" operate="query_all" table="t_open_city" order="parent_id,sort">
+	</hex>
+	
+	<hex id="hex_resource_city_updateOpenCity" name="修改开通城市" type="jdbc" operate="update" table="t_open_city">
+		<param name="open_city_id" type="varchar" primary="true"/> 
+		<param name="open_city_name" type="varchar"/> 
+		<param name="open_city_code" type="varchar" />
+		<param name="is_leaf" type="int" />
+		<param name="parent_id" type="varchar" />
+		<param name="sort" type="int"/>
+		<param name="note" type="varchar" /> 
+		<param name="is_province" type="varchar" /> 
+		<param name="short_pinyin" type="varchar" /> 
+	</hex>
+	
+	<hex id="hex_resource_city_addOpenCityFuntion" name="新增开通城市function" type="function" operate="com.yunyun.example.function.resource.AddOpenCityFunction">
+		<param name="open_city_name" type="varchar"/> 
+		<param name="open_city_code" type="varchar" />
+		<param name="parent_id" type="varchar"/> 
+		<param name="sort" type="int"/>
+		<param name="note" type="varchar" />  
+		<param name="is_province" type="varchar" /> 
+		<param name="short_pinyin" type="varchar" /> 
+	</hex>
+	
+	<hex id="hex_resource_city_insertOpenCity" name="保存数据" type="jdbc" operate="insert" table="t_open_city">
+		<param name="open_city_id" type="varchar" /> 
+		<param name="open_city_name" type="varchar"/> 
+		<param name="open_city_code" type="varchar" />
+		<param name="is_leaf" type="int" />
+		<param name="parent_id" type="varchar" />
+		<param name="sort" type="int"/>
+		<param name="type" type="int"/>
+		<param name="note" type="varchar" /> 
+		<param name="is_province" type="varchar" /> 
+		<param name="short_pinyin" type="varchar" /> 
+		<param name="province_city_id" type="varchar" /> 
+	</hex>
+	
+	<hex id="hex_resource_city_queryOpenCityById" name="根据编号查询开通城市" type="jdbc" operate="query_all" table="t_open_city">
+		<param name="open_city_id" type="varchar"/> 
+	</hex>
+	
+	<hex id="hex_resource_city_deleteOpenCityFuntion" name="删除开通城市function" type="function" operate="com.yunyun.example.function.resource.DeleteOpenCityFunction">
+		<param name="open_city_id" type="varchar" />
+	</hex>
+	
+	<hex id="hex_resource_city_deleteOpenCityById" name="删除开通城市" type="jdbc" operate="delete" table="t_open_city">
+		<param name="open_city_id" type="varchar" /> 
+	</hex>
+	
+	<hex id="hex_resource_city_queryOpenCityByNameAndType" name="根据名称以及类型查询开通城市" type="jdbc" operate="query_all" table="t_open_city" order="parent_id,sort">
+		<param name="open_city_name" type="varchar"/>
+		<param name="type" type="int"/> 
+	</hex>
+	
+	<hex id="hex_resource_city_queryOpenCityByParentId" name="根据父级编号查询子开通城市" type="jdbc" operate="query_all" table="t_open_city">
+		<param name="parent_id" type="varchar"/> 
+	</hex>
+	
+	<hex id="hex_resource_city_querycityByCityShorPinyin" name="根据城市拼音缩写查询城市数据" type="jdbc" operate="sql_query_all">
+		<param name="short_pinyin" type="varchar" />
+		<sql>
+			select open_city_id,open_city_name from t_open_city
+			where 1=1
+			<if test="#short_pinyin != null">
+				and short_pinyin like '%#short_pinyin%' or open_city_name like '%#short_pinyin%'
+			</if>
+		</sql>
+	</hex>
+</hexs>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans>
+<hexs>
+    <hex id="hex_frame_func_test" name="查询测试" type="jdbc" operate="query" table="user">
+    </hex>
+</hexs>

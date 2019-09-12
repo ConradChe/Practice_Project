@@ -1,0 +1,25 @@
+<component name="libraryTable">
+  <library name="lib1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/school2/WebRoot/WEB-INF/lib/httpclient-4.3.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/school2/WebRoot/WEB-INF/lib/dom4j-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/school2/WebRoot/WEB-INF/lib/mysql-connector-java-5.1.26-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/school2/WebRoot/WEB-INF/lib/slf4j-simple-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/school2/WebRoot/WEB-INF/lib/CCP_REST_SMS_SDK_JAVA_v2.6.3r.jar!/" />
+      <root url="jar://$PROJECT_DIR$/school2/WebRoot/WEB-INF/lib/hait-core-2.0.7878.jar!/" />
+      <root url="jar://$PROJECT_DIR$/school2/WebRoot/WEB-INF/lib/commons-codec-1.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/school2/WebRoot/WEB-INF/lib/commons-pool-1.5.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/school2/WebRoot/WEB-INF/lib/c3p0-0.9.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/school2/WebRoot/WEB-INF/lib/httpcore-4.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/school2/WebRoot/WEB-INF/lib/commons-logging-1.1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/school2/WebRoot/WEB-INF/lib/commons-fileupload-1.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/school2/WebRoot/WEB-INF/lib/slf4j-api-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/school2/WebRoot/WEB-INF/lib/mchange-commons-java-0.2.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/school2/WebRoot/WEB-INF/lib/commons-io-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/school2/WebRoot/WEB-INF/lib/fastjson-1.1.33.jar!/" />
+      <root url="jar://$PROJECT_DIR$/school2/WebRoot/WEB-INF/lib/java_memcached-release_2.6.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

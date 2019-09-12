@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>公告管理</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" src="../frame/include.js"></script>
+<script type="text/javascript" src="notice.js"></script>
+<style>
+body{min-width:900px;}
+form table tr td {
+	height: 34px;
+}
+.hait-select .select-items, .hait-select .select-other-items{
+    z-index: 9999;
+}
+
+</style>
+</head>
+<body>
+	<div class="container" style="height:94%">
+		<div class="search-bar">
+			<span class="fl">发布时间:</span>
+			<input id="startDatetime" type="text" hait-type="hait.form.field.DateField" style="width: 120px;margin-left: 5px;float: left;" /> <span class="fl">&nbsp;-&nbsp;</span>
+			<input id="endDatetime" type="text" hait-type="hait.form.field.DateField" style="width: 120px;margin-left: 5px;float: left;" /> 
+			<button class="hait-button icon-search" style="width:100px" onclick="searchData()">查询</button>
+			<button class="hait-button icon-save" onclick="openDialog()">添加</button>
+			<button class="hait-button icon-modification" onclick="openEditDialog()">修改</button>
+			<button class="hait-button icon-delete" onclick="deleteRoute()">删除</button>
+		</div>
+		<div class="cls" style="margin-top: 10px"></div>
+		<table id="targetGrid" style="margin-top:20px;" hait-type="hait.grid.Grid"
+			func-id="hex_notice_queryAllNotices" mode="func" limit="10" multiple="true" onrowclick="gridRowClick">
+			<tr>
+				<th field="publish_time" format="date" width="12%">公告时间</th>
+				<th field="notice_type" dict="NOTICE_TYPE" width="8%">公告类型</th>
+				<th field="notice_title">标题</th>
+				<!-- <th field="notice_contain">公告内容</th> -->
+				<th field="publisher_name" width="8%">操作人</th>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

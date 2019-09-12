@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans >
+<hexs>
+		<hex id="hex_system_queryAllStudentsByConditions" name="根据查询条件查询所有系统用户信息" type="jdbc" operate="sql_query">
+			<param name="student_no" type="varchar" />
+			<param name="student_name" type="varchar" />
+			<param name="phone_number" type="varchar" />
+			<param name="student_type" type="int" />
+			<param name="start_time" type="varchar" />
+			<param name="end_time" type="varchar" />
+			<param name="major_names" type="varchar"/>
+			<param name="table_order_by" type="varchar" null_value="operate_time desc" />
+			<sql>
+				SELECT
+					*
+				FROM
+					t_student
+				WHERE
+					1 = 1
+				<if test="#student_no != null">
+					AND student_no LIKE '%#student_no%'
+				</if>
+				<if test="#student_name != null">
+					AND student_name LIKE '%#student_name%'
+				</if>
+				<if test="#phone_number != null">
+					AND phone_number LIKE '%#phone_number%'
+				</if>
+				<if test="#student_type != null">
+					AND student_type = #student_type
+				</if>
+				<if test="#major_names != null">
+					AND major_names = #major_names
+				</if>
+				<if test="#start_time != null">
+					AND operate_time BETWEEN '#start_time 00:00:00' AND '#end_time 23:59:59'
+				</if>
+				<if test="#table_order_by != null">
+					ORDER BY #table_order_by
+				</if>
+			</sql>
+	</hex>
+	
+	<hex id="hex_student_queryMajorByShortPinyin" name="通过拼音缩写搜索专业" type="jdbc" operate="sql_query_all">
+		<param name="short_pinyin" type="varchar"/>
+		<sql>
+			select 
+			major_id,major_name
+			from t_major 
+			where 1=1
+			<if test="#short_pinyin != null">
+				and short_pinyin like '%#short_pinyin%' or major_name like '%#short_pinyin%'
+			</if>
+		</sql>
+	</hex> 
+	
+	<hex id="hex_student_insertStudentFunction" name="新增学生Function" type="function" operate="com.yunyun.school.function.student.InsertStudentFunction">
+		<param name="student_no" type="varchar"/>
+		<param name="student_name" type="varchar"/>
+		<param name="phone_number" type="varchar"/>
+		<param name="student_type" type="int"/>
+		<param name="major_ids" type="varchar"/>
+		<param name="major_names" type="varchar"/>
+		<param name="teacher_id" type="char"/>
+		<param name="class_id" type="char"/>
+		<param name="admission_date" type="date"/>
+		<param name="student_photo" type="varchar"/>
+	</hex>
+	
+	<hex id="hex_student_insertStudent" name="新增学生" type="jdbc" operate="insert" table="t_student">
+		<param name="student_id" type="char"/>
+		<param name="student_no" type="varchar"/>
+		<param name="student_name" type="varchar"/>
+		<param name="student_photo" type="varchar"/>
+		<param name="phone_number" type="varchar"/>
+		<param name="student_type" type="int"/>
+		<param name="major_ids" type="varchar"/>
+		<param name="major_names" type="varchar"/>
+		<param name="teacher_id" type="char"/>
+		<param name="class_id" type="char"/>
+		<param name="admission_date" type="date"/>
+		<param name="operator_id" type="char"/>
+		<param name="operator_name" type="varchar"/>
+		<param name="operate_time" type="session" null_value="current_time" />
+	</hex>
+	
+	<hex id="hex_student_insertStudentAndMajor" name="新增学生和专业关联" type="jdbc" operate="insert" table="l_major_student">
+		<param name="student_id" type="char"/>
+		<param name="major_id" type="varchar"/>
+	</hex>
+	
+	<hex id="hex_student_queryStudentByStudentId" name="通过ID搜索学生" type="jdbc" operate="query_all" table="t_student">
+		<param name="student_id" type="char" />
+	</hex>
+
+	<hex id="hex_student_queryStudentByNo" name="通过No搜索学生" type="jdbc" operate="query_all" table="t_student">
+		<param name="student_no" type="varchar" />
+	</hex>
+	
+	<hex id="hex_student_updateStudentFunction" name="更新学生function" type="function" operate="com.yunyun.school.function.student.UpdateStudentFunction">
+		<param name="student_id" type="char" primary="true"/>
+		<param name="student_no" type="varchar"/>
+		<param name="student_name" type="varchar"/>
+		<param name="phone_number" type="varchar"/>
+		<param name="student_type" type="int"/>
+		<param name="major_ids" type="varchar"/>
+		<param name="major_names" type="varchar"/>
+		<param name="teacher_id" type="char"/>
+		<param name="class_id" type="char"/>
+		<param name="admission_date" type="date"/>
+		<param name="student_photo" type="varchar"/>
+	</hex>
+	
+	<hex id="hex_student_updateStudentFunction" name="更新学生信息" type="jdbc" operate="update">
+		<param name="student_id" type="char" primary="true"/>
+		<param name="student_no" type="varchar"/>
+		<param name="student_name" type="varchar"/>
+		<param name="student_photo" type="varchar"/>
+		<param name="phone_number" type="varchar"/>
+		<param name="student_type" type="int"/>
+		<param name="major_ids" type="varchar"/>
+		<param name="major_names" type="varchar"/>
+		<param name="teacher_id" type="char"/>
+		<param name="class_id" type="char"/>
+		<param name="admission_date" type="date"/>
+		<param name="operator_id" type="char"/>
+		<param name="operator_name" type="varchar"/>
+		<param name="operate_time" type="session" null-value="current_time"/>
+	</hex>
+	
+	<hex id="hex_student_deleteStudentFunction" name="删除学生function" type="function" operate="com.yunyun.school.function.student.DeleteStudentFunction">
+		<param name="student_id" type="char" />
+	</hex>
+	
+	<hex id="hex_student_deleteStudentByStudentId" name="通过学生ID删除学生" type="jdbc" operate="delete" table="t_student">
+		<param name="student_id" type="char" />
+	</hex>
+	
+	<hex id="hex_student_deleteStudentAndMajor" name="删除学生和专业关联" type="jdbc" operate="delete" table="l_major_student">
+		<param name="student_id" type="char" />
+	</hex>
+	
+</hexs>

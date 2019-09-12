@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans >
+<hexs>
+	<hex id="hex_teacher_queryTeacherByShortPinyin" name="通过短拼查询导师" type="jdbc" operate="sql_query_all">
+		<param name="short_pinyin" type="varchar"/>
+		<sql>
+			SELECT
+				*
+			FROM
+				t_teacher
+			WHERE
+				short_pinyin LIKE '%#short_pinyin%'
+			ORDER BY
+				short_pinyin
+		</sql>
+	</hex>
+	
+	<hex id="hex_teacher_insertTeacherFunction" name="新增教师function" type="function" operate="com.yunyun.school.function.teacher.InsertTeacherFunction">
+		<param name="teacher_no" type="varchar"/>
+		<param name="teacher_name" type="varchar" />
+		<param name="short_pinyin" type="varchar" />
+		<param name="phone_number" type="varchar" />
+		<param name="major_ids" type="varchar" />
+		<param name="major_names" type="varchar" />
+	</hex>
+	
+	<hex id="hex_teacher_insertTeacher" name="新增教师" type="jdbc" operate="insert" table="t_teacher">
+		<param name="teacher_id" type="char"/>
+		<param name="teacher_no" type="varchar"/>
+		<param name="teacher_name" type="varchar" />
+		<param name="short_pinyin" type="varchar" />
+		<param name="phone_number" type="varchar" />
+		<param name="major_ids" type="varchar" />
+		<param name="major_names" type="varchar" />
+		<param name="operator_id" type="char" />
+		<param name="operator_name" type="varchar" />
+		<param name="operate_time" type="session" null_value="current_time" />
+	</hex>
+	
+	<hex id="hex_teacher_insertTeacherAndMajor" name="新增教师-专业关联" type="jdbc" operate="insert" table="l_major_teacher">
+		<param name="teacher_id" type="char"/>
+		<param name="major_id" type="char"/>
+	</hex>
+	
+	<hex id="hex_teacher_queryTeacherAndMajorBelowDataFunction" name="查询专业分组列表下的教师" type="function" operate="com.yunyun.school.function.teacher.QueryTeacherAndMajorBelowDataFuncion">
+		<param name="teacher_name" type="varchar"/>
+		<param name="teacher_no" type="varchar"/>
+		<param name="phone_number" type="varchar"/>
+	</hex>
+	
+	<hex id="hex_teacher_queryTeacherByConditions" name="通过条件查询教师" type="jdbc" operate="sql_query_all">
+		<param name="major_id" type="char"/>
+		<param name="teacher_name" type="varchar"/>
+		<param name="teacher_no" type="varchar"/>
+		<param name="phone_number" type="varchar"/>
+		<sql>
+			SELECT
+				t.*,lt.teacher_id
+			FROM
+				t_teacher t
+			INNER JOIN l_major_teacher lt ON lt.teacher_id = t.teacher_id
+			WHERE
+				lt.major_id = '#major_id'
+			<if test = "#teacher_name != null">
+				AND t.teacher_name LIKE '%#teacher_name%'
+			</if>
+			<if test = "#teacher_no != null">
+				AND t.teacher_no LIKE '%#teacher_no%'
+			</if>
+			<if test = "#phone_number != null">
+				AND t.phone_number LIKE '%#phone_number%'
+			</if>
+		</sql>
+	</hex>
+	
+	<hex id="hex_teacher_queryTeacherByMajorId" name="通过专业ID查找教师" type="jdbc" operate="query_all" table="t_teacher">
+		<param name="major_ids" type="varchar" primary="true"/>
+	</hex>
+	
+	<hex id="hex_teacher_queryTeacherByNo" name="通过工号查询教师" type="jdbc" operate="query_all" table="t_teacher">
+		<param name="teacher_no" type="varchar" primary="true"/>
+	</hex>
+	
+	<hex id="hex_teacher_deleteTeacherFunction" name="删除教师function" type="function" operate="com.yunyun.school.function.teacher.DeleteTeacherFunction">
+		<param name="teacher_id" type="char" />
+	</hex>
+	
+	<hex id="hex_teacher_deleteTeacher" name="通过ID删除教师" type="jdbc" operate="delete" table="t_teacher">
+		<param name="teacher_id" type="char" primary="true"/>
+	</hex>
+	
+	<hex id="hex_teacher_deleteTeacherAndMajor" name="删除教师和专业关联" type="jdbc" operate="delete" table="l_major_teacher">
+		<param name="teacher_id" type="char"/>
+		<param name="major_id" type="char"/>
+	</hex>
+	
+	<hex id="hex_teacher_queryTeacherByTeacherId" name="通过教师ID查询教师" type="jdbc" operate="query_all" table="t_teacher">
+		<param name="teacher_id" type="char" primary="true"/>
+	</hex>
+	
+	<hex id="hex_teacher_updateTeacherFunction" name="更新教师function" type="function" operate="com.yunyun.school.function.teacher.UpdateTeacherFunction">
+		<param name="teacher_id" type="char"/>
+		<param name="teacher_no" type="varchar"/>
+		<param name="teacher_name" type="varchar" />
+		<param name="short_pinyin" type="varchar" />
+		<param name="phone_number" type="varchar" />
+		<param name="major_ids" type="varchar" />
+		<param name="major_names" type="varchar" />
+	</hex>
+	
+	<hex id="hex_teacher_updateTeacher" name="更新教师" type="jdbc" operate="update" table="t_teacher">
+		<param name="teacher_id" type="char" primary="true"/>
+		<param name="teacher_no" type="varchar"/>
+		<param name="teacher_name" type="varchar" />
+		<param name="short_pinyin" type="varchar" />
+		<param name="phone_number" type="varchar" />
+		<param name="major_ids" type="varchar" />
+		<param name="major_names" type="varchar" />
+		<param name="operator_id" type="char" />
+		<param name="operator_name" type="varchar" />
+		<param name="operate_time" type="session" null_value="current_time" />
+	</hex>
+</hexs>

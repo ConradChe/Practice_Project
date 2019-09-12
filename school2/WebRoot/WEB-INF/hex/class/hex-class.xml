@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans >
+
+<hexs>
+	<hex id="hex_class_queryClassTreeData" name="查询班级树形列表" type="jdbc" operate="sql_query_all">
+		<sql>
+			SELECT
+				*
+			FROM
+				(
+					SELECT
+						g.grade_name AS class_name,
+						g.grade_id AS class_id,
+						g.parent_id,
+						g.is_leaf,
+						g.sort,
+						1 AS type,
+						'true' AS 'nocheck'
+					FROM
+						t_grade g
+					UNION ALL
+						SELECT
+							c.class_name,
+							c.class_id,
+							c.grade_id AS parent_id,
+							1 AS is_leaf,
+							c.class_id AS sort,
+							2 AS type,
+							'false' AS 'nocheck'
+						FROM
+							t_class c
+				) g
+			ORDER BY
+				g.parent_id,
+				g.sort
+		</sql>
+	</hex>
+	
+	<hex id="hex_class_queryClassTreeData_new" name="查询班级树形列表" type="jdbc" operate="sql_query_all">
+		<sql>
+			SELECT
+				*
+			FROM
+				(
+					SELECT
+						g.grade_name AS class_name,
+						g.grade_id AS class_id,
+						g.parent_id,
+						g.is_leaf,
+						g.sort,
+						1 AS type,
+						'true' AS 'nocheck'
+					FROM
+						t_grade g
+				) g
+			ORDER BY
+				g.parent_id,
+				g.sort
+		</sql>
+	</hex>
+	
+	<hex id="hex_class_queryAllClass" name="查询所有班级" type="jdbc" operate="query_all" table="t_grade" order="parent_id,sort">
+		
+	</hex>
+	
+	<hex id="hex_class_updateClass" name="更新班级" type="jdbc" operate="update" table="t_grade">
+		<param name="grade_id" type="char" primary="true"/>
+		<param name="grade_name" type="varchar"/>
+		<param name="is_leaf" type="int"/>
+		<param name="sort" type="int"/>
+	</hex>
+	
+	<hex id="hex_class_queryClassById" name="通过ID查询班级" type="jdbc" operate="query_all" table="t_grade">
+		<param name="grade_id" type="char" primary="true"/>
+	</hex>
+	
+	<hex id="hex_class_insertClassFunction" name="新增班级function" type="function" operate="com.yunyun.school.function.grade.InsertClassFunction">
+		<param name="grade_name" type="varchar"/>
+		<param name="is_leaf" type="int"/>
+		<param name="parent_id" type="char"/>
+		<param name="sort" type="int"/>
+	</hex>
+	
+	<hex id="hex_class_insertClass" name="新增班级" type="jdbc" operate="insert" table="t_grade">
+		<param name="grade_id" type="char"/>
+		<param name="grade_name" type="varchar"/>
+		<param name="is_leaf" type="int"/>
+		<param name="parent_id" type="char"/>
+		<param name="sort" type="int"/>
+		<param name="operator_id" type="char"/>
+		<param name="operator_name" type="varchar"/>
+		<param name="operate_time" type="session" null_value="current_time" />
+	</hex>
+	
+	<hex id="hex_class_deleteGradeFunction" name="删除班级function" type="function" operate="com.yunyun.school.function.grade.DeleteGradeFunction">
+		<param name="grade_id" type="char" primary="true"/>
+	</hex>
+	
+	<hex id="hex_class_deleteGradeById" name="通过ID删除班级" type="jdbc" operate="delete" table="t_grade">  
+		<param name="grade_id" type="char" primary="true"/>
+	</hex>
+</hexs>

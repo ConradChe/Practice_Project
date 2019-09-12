@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans>
+<hexs>
+	<hex id="hex_record_queryReimburseRecords" name="查询所有报销记录" type="jdbc" operate="query" table="t_reimburse"></hex>
+	
+	<hex id="hex_record_queryReimburseRecordTotal" name="查询报销记录远程统计数据" type="jdbc" operate="sql_query">
+		<sql>
+			SELECT
+				sum(reimburse_amount) AS reimburse_amount,
+				sum(final_reimburse_amount) AS final_reimburse_amount
+			FROM
+				t_reimburse
+		</sql>
+	</hex>
+</hexs>

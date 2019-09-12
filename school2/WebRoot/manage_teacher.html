@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>教师信息管理</title>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="pragma" content="no-cache"> 
+	<meta http-equiv="cache-control" content="no-cache"> 
+	<meta http-equiv="expires" content="0"> 
+	<script type="text/javascript" src="frame/include.js"></script>
+	<script type="text/javascript" src="manage_teacher.js?v=2017122510"></script>
+  </head>
+  
+  <body>
+    <div class="container" style="width:97%">
+    	<div class="title-bar">
+    		<div class="title">教师信息管理</div>
+    	</div>
+    	<div class="search-bar">
+    		<span class="fl">查询条件：</span>
+    		<select id="searchColumn" mode="local" hait-type="hait.form.field.SelectField" default-value="teacher_name">
+    			<option value="teacher_name">导师姓名</option>
+    			<option value="phone_number">手机号</option>
+    			<option value="teacher_no">工号</option>
+    		</select>
+    		<span class="fl">内容</span>
+    		<input id="searchValue" type="text" hait-type="hait.form.field.TextField"/>
+    		<button class="hait-button icon-search" onclick="searchTeacherByConditions()">查询</button>
+			<button class="hait-button icon-see-details" onclick="showAddTeacherDialog()">添加教师</button>
+			<button class="hait-button icon-modification" onclick="showUpdateTeacherDialog()">编辑</button>
+			<button class="hait-button icon-delete" onclick="doDeleteTeacher()">删除</button>
+    	</div>
+    	
+    	<div class="cls" style="margin-top: 10px"></div>
+		<table id="teacherAndMajorGrid" hait-type="hait.grid.GroupGrid" mode="func" func-id="hex_teacher_queryTeacherAndMajorBelowDataFunction" 
+			group-field="major_name" pagination="false" onrowclick="teacherGridRowClick" style="margin-top:20px;">
+			<tr>
+				<th field="teacher_name">教师名称</th>
+				<th field="teacher_no">教师工号</th>
+				<th field="phone_number">手机号码</th>
+			</tr>
+		</table>
+		
+		<div id="teacherOperateDialog" hait-type="hait.dialog.Dialog" title="添加新教师" style="width: 800px; height: 430px;">
+    		<div>
+    			<form id="teacherOperateForm" action="#" method="post" hait-type="hait.form.Form">
+    				<table border="0" width="100%">
+    					<tr>
+    						<td>导师姓名</td>
+    						<td>
+    						<input name="teacher_name" type="text" hait-type="hait.form.field.TextField" required="true" placeholder="请输入教师姓名" />
+    						</td>
+    						<td>工号</td>
+    						<td>
+    						<input name="teacher_no" type="text" hait-type="hait.form.field.TextField" required="true" placeholder="请输入教师工号" />
+    						</td>
+    					</tr>
+    					<tr>
+    						<td>手机号码</td>
+    						<td>
+    						<input name="phone_number" type="text" hait-type="hait.form.field.TextField" required="true" placeholder="请输入电话" />
+    						</td>
+    						<td>姓名简拼</td>
+    						<td>
+    						<input name="short_pinyin" type="text" hait-type="hait.form.field.TextField" required="true" placeholder="姓名简拼" />
+    						</td>
+    					</tr>
+    					<tr>
+    						<td>教授专业</td>
+    						<td>
+    						<select name="major_ids" mode="func" func-id="hex_student_queryMajorByShortPinyin" option-value="major_id" option-text="major_name" search="short_pinyin"
+				    		placeholder="搜索专业..." hait-type="hait.form.field.SearchSelectField" style="width: 125px" add-query-all="true" onchange="setMajorName"></select>
+    						<input id="setMajorName" name="major_names" type="hidden" hait-type="hait.form.field.TextField" />
+							</td>
+    					</tr>
+    				</table>
+    			</form>
+    		</div>
+    			<div class="buttons">
+				<button>关闭</button>
+				<button id="mainDealBtn" stress="true" onclick="saveTeacherData()">提交</button>
+			</div>
+    	</div>
+    	
+		<div id="teacherUpdateDialog" hait-type="hait.dialog.Dialog" title="修改教师" style="width: 800px; height: 430px;">
+    		<div>
+    			<form id="teacherUpdateForm" action="#" method="post" hait-type="hait.form.Form">
+    				<table border="0" width="100%">
+    					<tr>
+    						<td>导师姓名</td>
+    						<td>
+    						<input name="teacher_name" type="text" hait-type="hait.form.field.TextField" required="true" placeholder="请输入教师姓名" />
+    						</td>
+    						<td>工号</td>
+    						<td>
+    						<input name="teacher_no" type="text" hait-type="hait.form.field.TextField" required="true" placeholder="请输入教师工号" />
+    						</td>
+    					</tr>
+    					<tr>
+    						<td>手机号码</td>
+    						<td>
+    						<input name="phone_number" type="text" hait-type="hait.form.field.TextField" required="true" placeholder="请输入电话" />
+    						</td>
+    						<td>姓名简拼</td>
+    						<td>
+    						<input name="short_pinyin" type="text" hait-type="hait.form.field.TextField" required="true" placeholder="姓名简拼" />
+    						</td>
+    					</tr>
+    					<tr>
+    						<td>教授专业</td>
+    						<td>
+    						<input name="major_ids" type="text" hait-type="hait.form.field.MagnifierField" dialog-title="专业选择" url="public/majorSelect.html" onchange="setMajorName2"/>
+    						<input id="updateMajorName" name="major_names" type="hidden" hait-type="hait.form.field.TextField" />
+    					</tr>
+    				</table>
+    			</form>
+    		</div>
+    			<div class="buttons">
+				<button>关闭</button>
+				<button id="mainDealBtn" stress="true" onclick="saveTeacherData()">提交</button>
+			</div>
+    	</div>    	
+    </div>
+  </body>
+</html>

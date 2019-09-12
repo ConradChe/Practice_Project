@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hexs>
+	<hex id="hex_major_queryAllMajorData" name="查询所有专业数据" type="jdbc" operate="query" table="t_major"></hex>
+	
+	<hex id="hex_major_queryAllMajors" name="查询所有专业列表" type="jdbc" operate="query" table="t_major"></hex>
+	
+	<hex id="hex_major_queryMajorByMajorId" name="通过专业ID查询专业" type="jdbc" operate="query_all" table="t_major">
+		<param name="major_id" type="char" />
+	</hex>
+	
+	<hex id="hex_major_insertMajorFunction" name="新增专业function" type="function" operate="com.yunyun.school.function.major.InsertMajorFunction">
+		<param name="major_name" type="varchar"/>
+		<param name="short_pinyin" type="varchar"/>
+	</hex>
+	
+	<hex id="hex_major_insertMajor" name="新增专业" type="jdbc" operate="insert" table="t_major">
+		<param name="major_id" type="char"/>
+		<param name="major_name" type="varchar"/>
+		<param name="short_pinyin" type="varchar"/>
+	</hex>
+	
+	<hex id="hex_major_updateMajorFunction" name="更新专业function" type="function" operate="com.yunyun.school.function.major.UpdateMajorFunction">
+		<param name="major_id" type="char"/>
+		<param name="major_name" type="varchar"/>
+		<param name="short_pinyin" type="varchar"/>
+	</hex>
+	
+	<hex id="hex_major_updateMajorById" name="通过专业ID更新专业" type="jdbc" operate="update" table="t_major">
+		<param name="major_id" type="char" primary="true"/>
+		<param name="major_name" type="varchar"/>
+		<param name="short_pinyin" type="varchar"/>
+	</hex>
+	
+	<hex id="hex_major_deleteMajorFunction" name="删除专业function" type="function" operate="com.yunyun.school.function.major.DeleteMajorFunction">
+		<param name="major_id" type="char" />
+	</hex>
+	
+	<hex id="hex_major_deleteMajorByMajorId" name="通过专业ID删除专业" type="jdbc" operate="delete" table="t_major">
+		<param name="major_id" type="char" primary="true"/>
+	</hex>
+</hexs>

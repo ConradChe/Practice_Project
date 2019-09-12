@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>学员信息管理</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <script type="text/javascript" src="frame/include.js"></script>
+    <script type="text/javascript" src="manage_student.js?v=2017122507"></script>
+</head>
+
+<body>
+<div class="container" style="width:97%">
+    <div class="title-bar">
+        <div class="title">学员信息管理</div>
+    </div>
+    <div class="search-bar">
+        <span class="fl">查询条件：</span>
+        <select id="searchColumn" mode="local" hait-type="hait.form.field.SelectField" default-value="student_name">
+            <option value="student_name">学生姓名</option>
+            <option value="phone_number">手机号</option>
+            <option value="student_no">学号</option>
+        </select>
+        <span class="fl">内容</span>
+        <input id="searchValue" type="text" hait-type="hait.form.field.TextField"/>
+        <span class="fl">入学时间：</span>
+        <input id="startTime" type="text" hait-type="hait.form.field.DateField"/>
+        <span class="fl">&nbsp;-&nbsp;</span>
+        <input id="endTime" type="text" hait-type="hait.form.field.DateField">
+        <select id="studentType" mode="dict" dict="STUDENT_TYPE" hait-type="hait.form.field.SelectField"
+                placeholder="请选择学生类别" add-query-all="true"></select>
+        <select id="majorName" mode="func" func-id="hex_student_queryMajorByShortPinyin" option="major_id"
+                option-text="major_name" search="short_pinyin" placeholder="请选择专业"
+                hait-type="hait.form.field.SearchSelectField" style="width: 125px" add-query-all="true"></select>
+        <button class="hait-button icon-search" onclick="searchStudentByConditions()">查询</button>
+        <button class="hait-button icon-see-details" onclick="showAddStudentDialog()">添加新学生</button>
+        <button class="hait-button icon-modification" onclick="showModifyStudentDialog()">编辑</button>
+        <button class="hait-button icon-delete" onclick="doDeleteStudent()">删除</button>
+    </div>
+
+    <div class="cls" style="margin-top: 10px"></div>
+    <table id="studentGrid" hait-type="hait.grid.Grid" mode="func" func-id="hex_system_queryAllStudentsByConditions"
+           onrowclick="studentGridRowClick" limit="12" title-sort="true" style="margin-top: 20px">
+        <tr>
+            <th field="student_no">学号</th>
+            <th field="student_name">学生姓名</th>
+            <th field="phone_number">手机号码</th>
+            <th field="student_type" dict="STUDENT_TYPE">学生类别</th>
+            <th field="major_names">专业名称</th>
+            <th field="admission_date">入学时间</th>
+            <th field="operator_name">录入人</th>
+            <th field="operate_time" format="date">录入时间</th>
+        </tr>
+    </table>
+
+    <div id="studentOperateDialog" hait-type="hait.dialog.Dialog" title="添加新学生" style="width: 800px; height: 430px;">
+        <div>
+            <form id="studentOperateForm" action="#" method="post" hait-type="hait.form.Form">
+                <table border="0" width="100%">
+                    <tr>
+                        <td>学生姓名</td>
+                        <td>
+                            <input name="student_name" type="text" hait-type="hait.form.field.TextField" required="true"
+                                   placeholder="请输入学生姓名"/>
+                        </td>
+                        <td>学号</td>
+                        <td>
+                            <input name="student_no" type="text" hait-type="hait.form.field.TextField" required="true"
+                                   placeholder="请输入学生学号"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>手机号码</td>
+                        <td>
+                            <input name="phone_number" type="text" hait-type="hait.form.field.TextField" required="true"
+                                   placeholder="请输入电话"/>
+                        </td>
+                        <td>学生类型</td>
+                        <td>
+                            <select name="student_type" mode="dict" dict="STUDENT_TYPE"
+                                    hait-type="hait.form.field.SelectField" placeholder="请选择学生类别"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>研读专业</td>
+                        <td>
+                            <select name="major_ids" mode="func" func-id="hex_student_queryMajorByShortPinyin"
+                                    option-value="major_id" option-text="major_name" search="short_pinyin"
+                                    placeholder="搜索专业..." hait-type="hait.form.field.SearchSelectField"
+                                    style="width: 125px" onchange="setMajorName"></select>
+                            <input id="major_names" name="major_names" type="hidden"
+                                   hait-type="hait.form.field.TextField"/>
+                        </td>
+                        <td>导师选择</td>
+                        <td>
+                            <input type="text" mode="func" name="teacher_name"
+                                   hait-type="hait.form.field.SearchTextField"
+                                   func-id="hex_teacher_queryTeacherByShortPinyin"
+                                   search-start="1" option-value="teacher_name" option-text="teacher_no,teacher_name"
+                                   search="short_pinyin" required="required" onchange="setTeacherId"/>
+                            <input id="teacher_id" name="teacher_id" type="hidden"
+                                   hait-type="hait.form.field.TextField"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>班级</td>
+                        <td>
+                            <select name="class_id" hait-type="hait.form.field.TreeField" mode="func"
+                                    func-id="hex_class_queryClassTreeData_new"
+                                    id-name="class_id" text="class_name" return-value="class_id"></select>
+                        </td>
+                        <td>入学日期</td>
+                        <td>
+                            <input name="admission_date" type="text" hait-type="hait.form.field.DateField"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>上传头像:</td>
+                        <td colspan="3">
+                            <input name="student_photo" type="text" limit="1"
+                                   hait-type="hait.form.field.ImageUploadField" purpose="HEAD_IMG"/>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div class="buttons">
+            <button>关闭</button>
+            <button id="mainDealBtn" stress="true" onclick="saveUserData()">提交</button>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

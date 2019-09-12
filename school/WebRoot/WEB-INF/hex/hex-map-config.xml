@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans>
+<configs>
+	<config resource="hex-sys.xml" />
+	<config resource="hex-resource.xml" />
+	<config resource="system/hex-system.xml" />
+	<config resource="system/hex-resource-city.xml" />
+	<config resource="record/hex-record.xml" />
+	<config resource="frame/hex_frame_func.xml" />
+</configs>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>学员信息管理</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="pragma" content="no-cache"> 
+	<meta http-equiv="cache-control" content="no-cache"> 
+	<meta http-equiv="expires" content="0"> 
+	<script type="text/javascript" src="frame/include.js"></script>
+  </head>
+  <body>
+  <table id="targetGrid" style="width: 600px;" hait-type="hait.grid.Grid" multiple="true" pagination="true" title-sort="true">
+      <tbody>
+      <tr>
+          <th colspan="4">合并</th>
+      </tr>
+      <tr>
+          <th colspan="2">合并1</th>
+          <th colspan="2">合并2</th>
+      </tr>
+      <tr>
+          <th field="did">字典编号</th>
+          <th field="name">字典名称</th>
+          <th field="val" statistics="sum/avg">字典取值</th>
+          <th field="note">取值说明</th>
+      </tr>
+      <tr><td>1</td><td>名称1</td><td>1</td><td>说明1</td></tr>
+      <tr><td>2</td><td>名称1</td><td>2</td><td>说明2</td></tr>
+      <tr><td>3</td><td>名称1</td><td>3</td><td>说明3</td></tr>
+      <tr><td>4</td><td>名称1</td><td>4</td><td>说明4</td></tr>
+      <tr><td>5</td><td>名称2</td><td>1</td><td>说明1</td></tr>
+      <tr><td>6</td><td>名称2</td><td>2</td><td>说明2</td></tr>
+      </tbody>
+
+      <ul id="mytree1" hait-type="hait.tree.Tree" mode="local" onclick="zTreeOnClick">
+          <div text="父节点1">
+              <div text="子节点11">
+                  <div text="子节点111"></div>
+                  <div text="子节点112"></div>
+              </div>
+              <div text="子节点12"></div>
+          </div>
+          <div text="父节点2">
+              <div text="子节点21"></div>
+              <div text="子节点22"></div>
+          </div>
+      </ul>
+      <input type="text" hait-type="hait.form.field.TextField">
+      <input name="myinput" hait-type="hait.form.field.SearchTextField" placeholder="请输入..." func-id="hex_frame_func_test" option-value="item_name" search-start="4" required="true">
+      <input type="text" hait-type="hait.form.field.DateField" value="2015-04-05">
+
+      <select name="myselect" hait-type="hait.form.field.SelectField" multiple="multiple" add-query-all="true">
+          <option value="id">编号</option>
+          <option value="name">名称</option>
+      </select>
+      <select id="searchDict" placeholder="请选择..." hait-type="hait.form.field.SelectField" mode="func" func-id="hex_frame_func_test" params="operate:'query'" option-value="id" option-text="name"></select>
+      <select id="searchDict1" placeholder="请选择..." hait-type="hait.form.field.SelectField" mode="url" url="../../../data/tableurl.json" params="operate:'query_all'" option-value="index_type_id" option-text="type_name"></select>
+      <select name="state" placeholder="请选择..." hait-type="hait.form.field.SelectField" mode="dict" dict="YES_NO">
+      </select>
+
+      <select name="myselect" hait-type="hait.form.field.SearchSelectField" placeholder="请输入...">
+          <option value="name1">abcd</option>
+          <option value="name2">abcde</option>
+          <option value="name3">abcdef</option>
+          <option value="name4">abcdefg</option>
+          <option value="name5">abcdefg</option>
+      </select>
+      <select id="searchDict2" placeholder="请选择..." hait-type="hait.form.field.SearchSelectField" mode="func" func-id="hex_frame_func_test" params="operate:'query_all'" option-value="item_val" option-text="item_name" search="item_search"></select>
+      <select id="searchDict3" placeholder="请选择..." hait_type="hait.form.field.SearchSelectField" mode="url" url="../../../data/tableurl.json" params="operate:'query_all'" option-value="index_type_id" option-text="type_name"></select>
+      <select name="state" placeholder="请选择..." hait-type="hait.form.field.SearchSelectField" mode="dict" dict="YES_NO">
+      </select>
+
+      <input id="mycheckbox" type="checkbox" hait-type="hait.form.field.CheckboxField" value="1" text="测试">
+
+      <input id="myradio" type="radio" hait-type="hait.form.field.RadioField" value="1" text="测试">
+
+      <select name="mycheckbox" hait-type="hait.form.field.CheckboxGroupField" default-value="name">
+          <option value="id">编号</option>
+          <option value="name">名称</option>
+          <option value="age">年龄</option>
+      </select>
+
+      <select id="searchRole" hait-type="hait.form.field.CheckboxGroupField" mode="func" func_id="bex_sys_roles" params="operate:'query_all'" option_value="role_id" option_text="role_name"></select>
+      <select name="state" hait-type="hait.form.field.CheckboxGroupField" mode="dict" dict="YES_NO">
+      </select>
+
+      <select name="mycheckbox" hait-type="hait.form.field.RadioGroupField" default-value="name">
+          <option value="id">编号</option>
+          <option value="name">名称</option>
+          <option value="age">年龄</option>
+      </select>
+
+      <select id="searchRole4" hait-type="hait.form.field.RadioGroupField" mode="func" func_id="bex_sys_roles" params="operate:'query_all'" option_value="role_id" option_text="role_name"></select>
+
+      <select name="state" hait-type="hait.form.field.RadioGroupField" mode="dict" dict="YES_NO">
+      </select>
+
+      <select name="demoTree" hait-type="hait.form.field.TreeField" data="treeData" multiple="multiple" default-value="1">
+      </select>
+      <div id="treeData">
+          <div text="父节点1" value="1">
+              <div text="子节点11" value="11">
+                  <div text="子节点111" value="111"></div>
+                  <div text="子节点112" value="112"></div>
+              </div>
+              <div text="子节点12" value="12"></div>
+          </div>
+          <div text="父节点2" value="2">
+              <div text="子节点21" value="21"></div>
+              <div text="子节点22" value="22"></div>
+          </div>
+      </div>
+
+
+      <select name="demoDataTree" hait-type="hait.form.field.TreeField" mode="func" func-id="hex_frame_tree_test" params="operate:'query_all'" id-name="menu_id" text="menu_name" return-value="menu_id">
+      </select>
+
+      <input name="myselect" display-name="myselect_text" type="text" hait-type="hait.form.field.MagnifierField" url="login.html" ondialogclose="dialogclose">
+
+      <input id="myupload" type="text" hait-type="hait.form.field.ImageUploadField" purpose="CUST_HEAD">
+
+
+      <button class="hait-button icon-see-details" onclick="addTable()">查看详情</button>
+        <div id="targetGrid1"></div>
+
+  </table>
+  <script>
+      function addTable() {
+          var grid = new hait.grid.Grid();
+          grid.setParam({
+              style : "width:600px;height:300px",
+          columns : [
+              {field:"did",text:"字典编号"},
+              {field:"name",text:"字典名称"},
+              {field:"val",text:"字典取值"},
+              {field:"note",text:"取值说明"}
+          ],
+          data : [
+              {did:"1",name:"名称1",val:"1",note:"说明1"},
+              {did:"2",name:"名称1",val:"2",note:"说明2"},
+              {did:"3",name:"名称1",val:"3",note:"说明3"},
+              {did:"4",name:"名称2",val:"4",note:"说明4"},
+              {did:"5",name:"名称2",val:"1",note:"说明1"},
+              {did:"6",name:"名称2",val:"2",note:"说明2"}
+          ]
+      });
+          grid.draw();
+          $("#targetGrid1").append(grid.obj);
+      }
+  </script>
+  </body>
+</html>

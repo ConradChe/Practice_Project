@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>报销记录</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="pragma" content="no-cache"> 
+	<meta http-equiv="cache-control" content="no-cache"> 
+	<meta http-equiv="expires" content="0"> 
+	<script type="text/javascript" src="frame/include.js"></script>
+  </head>
+  
+  <body>
+    <div class="container" style="width: 97%">
+      <div class="title-bar">
+		<div class="title">考试记录(本地统计)</div>
+	  </div>
+	  
+	  <div class="cls" style="margin-top: 10px"></div>
+	  <table id="localCalcGrid" hait-type="hait.grid.Grid" mode="func" func-id="hex_exam_queryExaminationRecords" 
+		  onrowclick="systemUserGridRowClick" limit="6" style="margin-top:20px;">
+		  <tr>
+			<th field="student_name">学生姓名</th>
+			<th field="base_score" statistics="sum">基础课分数</th>
+			<th field="major_score" statistics="sum">专业课分数</th>
+			<th field="other_score" statistics="sum">额外分数</th>
+			<th field="examination_time" format="date">考试时间</th>
+		  </tr>
+	  </table>
+	  
+	  <div class="title-bar">
+		<div class="title">考试记录(远程统计)</div>
+	  </div>
+	  <div class="cls" style="margin-top: 10px"></div>
+	  <table id="totalCalcGrid" hait-type="hait.grid.Grid" mode="func" func-id="hex_exam_queryExaminationRecords" 
+	  	  stat-func-id="hex_exam_queryExaminationRecordsTotal" limit="6" style="margin-top:20px;">
+		  <tr>
+			<th field="student_name" >学生姓名</th>
+			<th field="base_score" statistics="sum">基础课分数</th>
+			<th field="major_score" statistics="sum">专业课分数</th>
+			<th field="other_score" statistics="sum">额外分数</th>
+			<th field="examination_time" format="date">考试时间</th>
+		  </tr>
+	  </table>
+    </div>
+  </body>
+</html>

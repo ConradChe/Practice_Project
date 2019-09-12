@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>专业选择</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" src="../frame/include.js"></script>
+<script type="text/javascript">
+hait.register("hait.grid.Grid");
+var targetGrid;
+var isMultiple;
+$(document).ready(function() {
+	// 获得传递过来的参数
+	var urlParam = hait.analyzeURL(window.location.href);
+	isMultiple = urlParam["multiple"] && urlParam["multiple"] == "true" ? true : false;
+	targetGrid = new hait.grid.Grid();
+	var joinId = parent.window.joinId;
+	targetGrid.setParam({
+		style : "width:97%",
+		multiple : isMultiple,
+		columns : [
+			{field:"major_name",text:"专业名称"}
+		],
+		mode : "func",
+		funcId : "hex_major_queryAllMajorData",
+		limit:"5"
+	});
+	targetGrid.draw();
+	$("#targetGrid").append(targetGrid.obj);
+});
+
+/**
+ * 给放大镜提供的方法
+ */
+function getValue() {
+	var selected;
+	var texts = "";
+	var vals = "";
+
+	if (isMultiple) {
+		selected = targetGrid.getSelected();
+		for ( var i = 0; i < selected.length; i++) {
+			texts += selected[i]["major_name"] + ",";
+			vals += selected[i]["major_id"] + ",";
+		}
+		if (texts.length > 0) {
+			texts = texts.substring(0, texts.length - 1);
+			vals = vals.substring(0, vals.length - 1);
+		}
+	} else {
+		selected = targetGrid.getSelected();
+		texts = selected["major_name"];
+		vals = selected["major_id"];
+	}
+
+	return {
+		val : vals,
+		text : texts
+	};
+}
+
+function searchGrid(){
+	// 删除当前查询参数
+	targetGrid.params = {};
+	// 获得查询参数
+	var majorName = hait.getCompById("majorName").getValue();
+	if(majorName != null && majorName != ""){
+		targetGrid.params["major_name"] = majorName;
+	}
+	targetGrid.refresh();
+};
+
+
+</script>
+</head>
+<style>
+ #targetGrid{float:left;width:100%;margin-top:16px;}
+</style>
+<body>
+	<div class="search-bar">
+		<span class="fl">专业名称:</span>
+		<input id="majorName" type="text" hait-type="hait.form.field.TextField" style="width:200px;"/>
+		<input type="button" class="hait-button" value="查询" onclick="searchGrid()"/>
+	</div>
+	<div id="targetGrid"></div>
+</body>
+</html>
