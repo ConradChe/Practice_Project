@@ -4,6 +4,7 @@
 	<!-- 登录注册相关Action -->
 	<bean id="common.userLoginAcion" class="com.yunyun.school.action.login.UserLogin" />
 	<bean id="common.loginAction" type="action" action="/common/login.do" class="com.yunyun.school.action.login.LoginAction" />
+	<bean id="common.registerAction" type="action" action="/common/register.do" class="com.yunyun.school.action.login.RegisterAction" />
 	<!-- 通用Action -->
 	<bean id="common.dataAction" type="action" action="/common/data.do" class="com.yunyun.school.action.data.ManageDataAction" />
 	<bean id="common.getDictsAction" type="action" action="/common/get_dicts.do" class="com.haitsoft.framework.data.action.GetDictsAction" />

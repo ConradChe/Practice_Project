@@ -68,8 +68,8 @@
 		<property name="type" value="mysql" />
 		<property name="driverClass" value="org.gjt.mm.mysql.Driver" />
 		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/school?useUnicode=true&amp;characterEncoding=UTF-8" />
- 		<property name="user" value="654bb8ab187d3fe0" />
-        <property name="password" value="654bb8ab187d3fe0" />
+ 		<property name="user" value="root" />
+        <property name="password" value="123456" />
         <property name="minPoolSize" value="1" />
         <property name="maxPoolSize" value="300" />
 	</bean>
