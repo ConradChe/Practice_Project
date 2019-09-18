@@ -93,7 +93,6 @@ function searchStudentByConditions() {
     if(searchValue != null && searchValue.length > 0 && searchColumn != "0"){
         studentGrid.params[searchColumn] = searchValue;
     }
-    alert(searchColumn+":"+searchValue)
     var startTime = hait.getCompById("startTime").getValue();
     var endTime = hait.getCompById("endTime").getValue();
     if(startTime != null && startTime.length>0){
