@@ -20,18 +20,18 @@
         function registFormSubmit(){
             var loginName = document.registForm["login_name"].value;
             var loginPwd = document.registForm["login_pwd"].value;
-            var loginPwd = document.registForm["login_repwd"].value;
+            var loginrePwd = document.registForm["login_repwd"].value;
 
             // 进行基本有效性验证
             if(loginName == null || loginName.length == 0){
                 alert("用户名不能为空!");
                 return;
             }
-            if(loginPwd == null || loginPwd.length == 0){
+            if(loginPwd == null || loginrePwd.length == 0){
                 alert("密码不能为空!");
                 return;
             }
-            if(loginPwd != loginPwd){
+            if(loginPwd != loginrePwd){
                 alert("两次密码不一致!");
                 return;
             }
@@ -52,10 +52,10 @@
     <form name="registForm" method="post" action="common/register.do">
         <input type="hidden" name="validate_code_flag"/>
         <input type="hidden" name="error_number" value="<%=errorNumber %>"/>
-        <input hait-type="hait.form.field.TextField" class="username input_us" type="text" maxlength="11" name="login_name" placeholder="请输入用户名" autocomplete="off"/>
-        <input hait-type="hait.form.field.TextField" class="username input_us" type="text" maxlength="11" name="real_name" placeholder="请输入真实姓名" autocomplete="off"/>
-        <input hait-type="hait.form.field.TextField" class="password input_us" type="password" maxlength="20" name="login_pwd" placeholder="请输入密码" />
-        <input hait-type="hait.form.field.TextField" class="password input_us" type="password" maxlength="20" name="login_repwd" placeholder="请确认密码" />
+        <input hait-type="hait.form.field.TextField" class="username input_us" type="text" maxlength="11" name="login_name" placeholder="请输入用户名" autocomplete="off"/><br>
+        <input hait-type="hait.form.field.TextField" class="username input_us" type="text" maxlength="11" name="real_name" placeholder="请输入真实姓名" autocomplete="off"/><br>
+        <input hait-type="hait.form.field.TextField" class="password input_us" type="password" maxlength="20" name="login_pwd" placeholder="请输入密码" /><br>
+        <input hait-type="hait.form.field.TextField" class="password input_us" type="password" maxlength="20" name="login_repwd" placeholder="请确认密码" /><br>
         <input class="btn_login " type="button" value="注&nbsp;&nbsp;&nbsp;册" onclick="registFormSubmit()">
         <div style="clear: both;"></div>
     </form>

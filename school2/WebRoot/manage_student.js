@@ -23,7 +23,7 @@ var studentOperateForm;
  */
 var operateFlag="";
 
-$(document).ready(function(){
+	$(document).ready(function(){
 	//初始化页面控件，根据编号获取已经生成的hait组件
 	studentGrid = hait.getCompById("studentGrid");
 	studentOperateDialog = hait.getCompById("studentOperateDialog");

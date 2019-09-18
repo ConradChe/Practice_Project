@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans >
+<hexs>
+    <hex id="hex_school_student_queryStudent" name="根据条件查询所有学生" type="jdbc" operate="sql_query">
+        <param name="student_no" type="varchar" />
+        <param name="student_name" type="varchar" />
+        <param name="phone_number" type="varchar" />
+        <param name="start_time" type="varchar" />
+        <param name="end_time" type="varchar" />
+        <sql>
+            select * from t_student
+            where 1=1
+            <if test="#student_no != null">
+                AND student_no like '%#student_no%'
+            </if>
+            <if test="#student_name != null">
+                AND student_name like '%#student_name%'
+            </if>
+            <if test="#phone_number != null">
+                AND phone_number like '%#phone_number%'
+            </if>
+            <if test="#start_time != null">
+                AND start_time BETWEEN '#start_time 00:00:00' AND '#end_time 23:59:59'
+            </if>
+
+            order by student_no asc
+
+
+        </sql>
+    </hex>
+
+    <hex id="hex_school_student_queryStudentById" name="通过学生id查询学生信息" type="jdbc" operate="query_all" table="t_student">
+        <param name="student_id" type="char"/>
+    </hex>
+
+    <hex id="hex_school_student_queryStudentByNo" name="通过学生学号查询学生信息" type="jdbc" operate="query_all" table="t_student">
+        <param name="student_no" type="varchar"/>
+    </hex>
+
+    <hex id="hex_school_student_queryStudentByGrade" name="通过学生电话查询学生信息" type="jdbc" operate="query_all" table="t_student">
+        <param name="phone_number" type="varchar" like="true"/>
+    </hex>
+
+    <hex id="hex_school_student_insertStudentFunction" name="新增学生信息function" type="function" operate="com.yunyun.school.function.school.InsertStudentFunction">
+        <param name="student_no" type="varchar"/>
+        <param name="student_name" type="varchar"/>
+        <param name="phone_number" type="varchar"/>
+        <param name="student_photo" type="varchar"/>
+        <param name="student_sex" type="char"/>
+        <param name="student_class" type="varchar"/>
+        <param name="start_time" type="date"/>
+        <param name="end_time" type="date"/>
+    </hex>
+
+    <hex id="hex_school_student_insertStudent" name="新增学生" type="jdbc" operate="insert" table="t_student">
+        <param name="student_id" type="char"/>
+        <param name="student_no" type="varchar"/>
+        <param name="student_name" type="varchar"/>
+        <param name="phone_number" type="varchar"/>
+        <param name="student_photo" type="varchar"/>
+        <param name="student_sex" type="char"/>
+        <param name="student_class" type="varchar"/>
+        <param name="start_time" type="date"/>
+        <param name="end_time" type="date"/>
+    </hex>
+
+    <hex id="hex_school_student_updateStudentFunction" name="更新学生信息function" type="function" operate="com.yunyun.school.function.school.UpdateStudentFunction">
+        <param name="student_id" type="char" primary="true"/>
+        <param name="student_no" type="varchar"/>
+        <param name="student_name" type="varchar"/>
+        <param name="phone_number" type="varchar"/>
+        <param name="student_photo" type="varchar"/>
+        <param name="student_sex" type="char"/>
+        <param name="student_class" type="varchar"/>
+        <param name="start_time" type="date"/>
+        <param name="end_time" type="date"/>
+    </hex>
+
+    <hex id="hex_school_student_updateStudent" name="更新学生信息" type="jdbc" operate="update" table="t_student">
+        <param name="student_id" type="char" primary="true"/>
+        <param name="student_no" type="varchar"/>
+        <param name="student_name" type="varchar"/>
+        <param name="phone_number" type="varchar"/>
+        <param name="student_photo" type="varchar"/>
+        <param name="student_sex" type="char"/>
+        <param name="student_class" type="varchar"/>
+        <param name="start_time" type="date"/>
+        <param name="end_time" type="date"/>
+    </hex>
+
+    <hex id="hex_school_student_deleteStudentFunction" name="删除学生信息function" type="function" operate="com.yunyun.school.function.school.DeleteStudentFunction">
+        <param name="student_id" type="char" />
+    </hex>
+
+    <hex id="hex_school_student_deleteStudentById" name="通过id删除学生信息" type="jdbc" operate="delete" table="t_student">
+        <param name="student_id" type="char" />
+    </hex>
+
+</hexs>

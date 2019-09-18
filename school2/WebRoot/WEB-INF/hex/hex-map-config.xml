@@ -12,4 +12,5 @@
 	<config resource="major/hex-major.xml" />
 	<config resource="exam/hex-exam.xml" />
 	<config resource="user/hex-user.xml" />
+	<config resource="school/student/hex-school-student.xml" />
 </configs>

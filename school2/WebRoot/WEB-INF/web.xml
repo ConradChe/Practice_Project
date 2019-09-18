@@ -16,7 +16,7 @@
 	<!-- 设置网站目录 -->
 	<context-param>
 		<param-name>weiSiteName</param-name>
-		<param-value>/school2</param-value>
+		<param-value>/school</param-value>
 	</context-param>
 
 	<!-- 启动Hait6.0 -->

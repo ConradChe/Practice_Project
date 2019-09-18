@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试页面</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <script type="text/javascript" src="frame/include.js"></script>
+    <script type="text/javascript" src="test.js?v=2017122510"></script>
+</head>
+<body>
+    <!--列表-->
+    <table id="studentGrid" style="width: 500px;" hait-type="hait.grid.Grid" multiple="true"
+           limit="5" pagination="true" title-sort="true" onrowclick="studentRowClick">
+        <tbody>
+            <tr>
+                <th field="id">学号</th>
+                <th field="name">姓名</th>
+                <th field="age">年龄</th>
+                <th field="grade">年级</th>
+            </tr>
+            <tr>
+                <td>1001</td><td>张三</td><td>20</td><td>2019级</td>
+            </tr>
+            <tr>
+                <td>1002</td><td>李四</td><td>21</td><td>2019级</td>
+            </tr>
+            <tr>
+                <td>1003</td><td>王五</td><td>20</td><td>2018级</td>
+            </tr>
+            <tr>
+                <td>1004</td><td>小明</td><td>22</td><td>2017级</td>
+            </tr>
+            <tr>
+                <td>1005</td><td>王红</td><td>21</td><td>2016级</td>
+            </tr>
+            <tr>
+                <td>1006</td><td>小强</td><td>22</td><td>2016级</td>
+            </tr>
+        </tbody>
+    </table>
+    <button onclick="addStudent()">添加数据</button>
+    <button onclick="updateStudent()">修改数据</button>
+    <button onclick="deleteStudent()">删除数据</button>
+    <button onclick="selectStudent()">查找数据</button>
+    <div id="studentDialog" hait-type="hait.dialog.Dialog"
+         title="添加学生对话框" style="width: 800px; height: 430px;">
+        <div>
+            <form id="studentOperateForm" action="#" method="post" hait-type="hait.form.Form">
+            <table id="studentEdit" border="0" width="100%">
+                <tr>
+                    <td>学生学号：</td>
+                    <td>
+                        <input name="student_id" type="text" hait-type="hait.form.field.TestField"
+                        required="true" placeholder="请输入学生学号"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>学生姓名：</td>
+                    <td>
+                        <input name="student_name" type="text" hait-type="hait.form.field.TestField"
+                               required="true" placeholder="请输入学生姓名"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>学生年龄：</td>
+                    <td>
+                        <input name="student_age" type="text" hait-type="hait.form.field.TestField"
+                               required="true" placeholder="请输入学生年龄"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>学生年级：</td>
+                    <td>
+                        <input name="student_grade" type="text" hait-type="hait.form.field.TestField"
+                               required="true" placeholder="请输入学生年级"/>
+                    </td>
+                </tr>
+            </table>
+            </form>
+        </div>
+        <div class="buttons">
+            <button>关闭</button>
+            <button id="mainDealBtn" stress="true" onclick="saveStudentData()">提交</button>
+        </div>
+    </div>
+
+</body>
+</html>

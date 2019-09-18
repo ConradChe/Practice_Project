@@ -47,9 +47,12 @@
 		<form name="loginForm" method="post" action="common/login.do">
 			<input type="hidden" name="validate_code_flag"/>
 			<input type="hidden" name="error_number" value="<%=errorNumber %>"/>
-			<input class="username input_us" type="text" maxlength="11" name="login_name" placeholder="请输入用户名" autocomplete="off"/>
-			<input class="password input_us" type="password" maxlength="20" name="login_pwd" placeholder="请输入密码" />
+			<input class="username input_us" type="text" maxlength="11" name="login_name"
+				   hait-type="hait.form.field.TextField" placeholder="请输入用户名" autocomplete="off"/><br>
+			<input class="password input_us" type="password" maxlength="20" name="login_pwd"
+				   hait-type="hait.form.field.TextField" placeholder="请输入密码" /><br>
 			<input class="btn_login " type="button" value="登&nbsp;&nbsp;&nbsp;录" onclick="loginFormSubmit()">
+			<button><a href="register.html">註冊</a></button>
 			<div style="clear: both;"></div>
 		</form>
 	</div>
